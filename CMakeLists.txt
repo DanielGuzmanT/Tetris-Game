@@ -3,4 +3,4 @@ project(tetris)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(tetris main.cpp)
+add_executable(tetris main.cpp Pieces.h)
