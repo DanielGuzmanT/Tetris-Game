@@ -5,6 +5,9 @@
 #ifndef TETRIS_PIECE_H
 #define TETRIS_PIECE_H
 
+class Board;
+enum POSITION {START_X = 1, START_Y = 0};
+
 class Piece {
 private:
     int x, y;
@@ -13,7 +16,8 @@ private:
 public:
     Piece();
     void randomInit();
-    void downOne();
+    void move(int move_x, int move_y);
+    friend class Board;
 };
 
 

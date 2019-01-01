@@ -15,12 +15,21 @@ int main() {
     Board board(&piece);
     Game game(loop_count, &piece, &board);
 
+    enum MOVE {DOWN_X  = 0, DOWN_Y  = 1,
+               RIGHT_X =-1, RIGHT_Y = 0,
+               LEFT_X  = 1, LEFT_Y  = 0};
+
     // main loop
     while (true) {
         // after LOOP_COUNT loops, piece
         if (game.getCounter() == loop_count) {
-            if(board.confirmPieceCanDown()) piece.downOne();
+            if (board.confirmPieceCanMove(MOVE::DOWN_X, MOVE::DOWN_Y)) {
+                board.eraseBlock();
+                piece.move(MOVE::DOWN_X, MOVE::DOWN_Y);
+            }
             else piece.randomInit();
+
+            board.update(); // update because of piece (moved or new piece)
             game.resetCounter(); // counter = 0 ;
         }
 
@@ -29,11 +38,11 @@ int main() {
         game.increaseCounter(speed); // counter += speed ;
 
         // keyboard
-        if      (commands.c_Pressed())      piece.rotateRight();
-        else if (commands.x_Pressed())      piece.rotateLeft();
-        else if (commands.left_Pressed() )  piece.moveLeft();
-        else if (commands.right_Pressed())  piece.moveRight();
-        else if (commands.down_Pressed() )  piece.drop();
+//        if      (commands.c_Pressed())      piece.rotateRight();
+//        else if (commands.x_Pressed())      piece.rotateLeft();
+//        else if (commands.left_Pressed() )  piece.moveLeft();
+//        else if (commands.right_Pressed())  piece.moveRight();
+//        else if (commands.down_Pressed() )  piece.drop();
         // else continue; // no command inserted
 
         board.draw();
