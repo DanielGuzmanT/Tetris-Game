@@ -7,7 +7,8 @@
 
 // Pieces definition
 // [KIND] [ROTATION] [HORIZONTAL BLOCK] [VERTICAL BLOCK]
-char mPieces [ 7 ][ 4 ][ 5 ][ 5 ] = {
+enum BLOCK {KIND=7, ROTT=4, HORZ=5, VERT=5};
+char mPieces [ KIND ][ ROTT ][ HORZ ][ VERT ] = {
 // Square
     {
         {
