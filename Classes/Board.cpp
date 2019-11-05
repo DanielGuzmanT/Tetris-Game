@@ -26,7 +26,7 @@ Board::Board(Piece *piece)
 void Board::draw() {
     for(int h=0; h<BOARD::HEIGHT; ++h){
         for (int w=0; w<BOARD::WIDTH; ++w) {
-            std::cout.put((this->board[h][w] == 1) ? (char)178 : ' ');
+            std::cout.put((this->board[h][w] == 1) ? (char)219 : ' ');
         }
         std::cout.put('\n');
     }
@@ -41,7 +41,9 @@ void Board::update() {
     // draw block
     for (int v=0; v<BLOCK::VERT; ++v) {
         for (int h=0; h<BLOCK::HORZ; ++h) {
-            this->board[this->piece.y+v][this->piece->x+h] = 1;
+            if (mPieces[piece->kind][piece->rott][v][h] >= 1) {
+                this->board[this->piece->y + v][this->piece->x + h] = 1;
+            }
         }
     }
 }
